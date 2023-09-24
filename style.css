@@ -1,0 +1,178 @@
+/* ********************** */
+/* Lottie-Specific Styles */
+/* ********************** */
+
+lottie-player {
+	height: auto !important;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+}
+.lottie-wrapper {
+	position: relative;
+}
+.lottie-wrapper img {
+	height: auto;
+	max-width: 100%;
+}
+
+/* ************* */
+/* Toggle Styles */
+/* ************* */
+
+.toggles {
+	display: flex;
+	justify-content: end;
+}
+
+.toggles [aria-pressed] {
+  	background: none;
+  	border: none;
+  	box-sizing: border-box;
+  	color: #FFF;
+  	display: block;
+	font-size: 16px;
+	font-weight: 600;
+  	line-height: inherit;
+	padding: .4em 4.35em .4em 0;
+  	position: relative;
+  	text-align: left;
+}
+
+.toggles span:first-child {
+	height: 10px;
+	opacity: 0;
+    position: absolute;
+    right: 14px;
+    top: 5px;
+    z-index: 1;
+}
+
+.toggles span:last-child {
+	height: 14px;
+	opacity: 1;
+    position: absolute;
+    right: 36px;
+    top: 7px;
+    z-index: 1;
+}
+
+/* Background & Toggle Circle */
+.toggles [aria-pressed]::before,
+.toggles [aria-pressed]::after {
+  	content: "";
+  	height: 1.5em;
+	left: auto;
+  	position: absolute;
+	right: 0;
+}
+
+.toggles [aria-pressed]::after {
+  	background: #464646;
+  	border: 0.2em solid #626161;
+  	border-radius: 1.1em;
+	color: #000;
+	content: "";
+	font-family: var(--wp--preset--font-family--newsgothic);
+	padding-left: 6px;
+	padding-right: 6px;
+  	top: 0.2em;
+  	width: calc(3.45em - 12px);
+}
+
+.toggles [aria-pressed]::before {
+  	background-color: #fff;
+  	background-position: center center;
+  	border-radius: 50%;
+  	border: 0.15em solid #767676;
+  	right: 2em;
+  	top: 0.25em;
+  	width: 1.5em;
+	z-index: 1;
+}
+
+/* Animations On */
+.toggles [aria-pressed=true]::before {
+	border-color: #009bff;
+  	color: #009bff;
+	right: 0;
+}
+
+.toggles [aria-pressed=true]::after {
+  	background-color: #009bff;
+  	border-color: #009bff;
+}
+
+/* Animations Off */
+.toggles [aria-pressed=false]::after {
+	color: #FFF;
+	text-align: right;
+}
+
+.toggles [aria-pressed="false"] span:first-child {
+	opacity: 1;
+}
+
+.toggles [aria-pressed="false"] span:last-child {
+	opacity: 0;
+}
+
+/* Hover and Focus States */
+.toggles [aria-pressed]:focus,
+.toggles [aria-pressed]:hover {
+  	color: #009bff;
+  	outline: none;
+}
+
+.toggles [aria-pressed]:focus::after,
+.toggles [aria-pressed]:hover::after {
+	box-shadow: 0 0 0.5em #AAA;
+}
+
+.toggles [aria-pressed]:focus::before {
+  	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='rgba(0,0,0,.25)'/%3E%3C/svg%3E");
+  	background-position: center center;
+  	background-repeat: no-repeat;
+  	background-size: 30%;
+}
+
+/* *********************** */
+/* Screen Size Adjustments */
+/* *********************** */
+
+@media ( max-width: 810px ) {
+	.toggles [aria-pressed] {
+		font-size: 13px;
+	}
+	.toggles span:first-child {
+		height: 8px;
+		right: 8px;
+		top: 4px;
+	}
+	.toggles span:last-child {
+		height: 10px;
+		right: 29px;
+		top: 6px;
+	}
+}
+
+/* ************************** */
+/* Animations and Transitions */
+/* ************************** */
+
+.toggles [aria-pressed]::before,
+.toggles [aria-pressed]::after,
+.toggles span:first-child,
+.toggles span:last-child {
+	transition: all 0.25s ease;
+}
+
+/* Animations when people do not have prefers-reduced-motion turned on */
+@media screen and (prefers-reduced-motion: no-preference) {
+	
+}
+
+/* Animations when animation toggle is turned on */
+.animation .adjust-animations-example {
+	transition: all 0.25s ease;
+}
