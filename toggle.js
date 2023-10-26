@@ -21,10 +21,8 @@ document.addEventListener( "DOMContentLoaded", function(){
 	// Set an initial status based on user preferences if one doesn't exist yet and call the play or pause function accordingly.
 	if ( animationStatus === null ) {
 		if ( !isReduced ) {
-			localStorage.setItem("KIanimationStatus", "play");
 			playAnimations();
 		} else {
-			localStorage.setItem("KIanimationStatus", "pause");
 			pauseAnimations();
 		}
 
@@ -40,11 +38,24 @@ document.addEventListener( "DOMContentLoaded", function(){
 
 		// Get the animation status
 		animationStatus = localStorage.getItem("KIanimationStatus");
-		
+
 		// Call the play or pause function opposite of what the current setting is
-		if ( animationStatus == 'play' ){
+		// Check if animation status is set (first time interacting with toggle) and act accordingly
+		if ( animationStatus === null ) {
+			if ( !isReduced ) {
+				localStorage["KIanimationStatus"] = "pause";
+				pauseAnimations();
+			} else {
+				localStorage["KIanimationStatus"] = "play";
+				playAnimations();
+			}
+	
+		// Otherwise, call the play or pause function
+		} else if ( animationStatus == 'play' ){
+			localStorage["KIanimationStatus"] = "pause";
 			pauseAnimations();
 		} else {
+			localStorage["KIanimationStatus"] = "play";
 			playAnimations();
 		}
 	}
@@ -53,9 +64,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 	 * Play animations
 	 */
 	function playAnimations(){
-		// Set the value in the browser
-		localStorage["KIanimationStatus"] = "play";
-
 		// Set the new aria value
 		animationControls.setAttribute("aria-pressed", "true");
 
@@ -98,9 +106,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 		}
 	}
 	function pauseAnimations(){
-		// Set the value in the browser
-		localStorage["KIanimationStatus"] = "pause";
-
 		// Set the new aria value
 		animationControls.setAttribute("aria-pressed", "false");
 
