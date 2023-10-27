@@ -181,3 +181,38 @@ lottie-player {
 .animation .adjust-animations-example {
 	transition: all 0.25s ease;
 }
+
+/* **************************** */
+/* **************************** */
+/* Something to explore further */
+/* **************************** */
+/* **************************** */
+/* https://www.amitmerchant.com/run-and-pause-animations-in-css/ */
+
+.container {
+	display: flex;
+	height: 100%;
+	background: linear-gradient(
+	  to right,
+	  #7953cd 20%,
+	  #00affa 30%,
+	  #0190cd 70%,
+	  #764ada 80%
+	);
+	background-size: 500% auto;
+	animation: animatedGradient 3s ease-in-out infinite;
+	animation-play-state: paused;
+}
+
+.animation .container:hover {
+	animation-play-state: running;
+}
+  
+@keyframes animatedGradient {
+	0% {
+	  background-position: 0% 50%;
+	}
+	100% {
+	  background-position: 100% 50%;
+	}
+}
